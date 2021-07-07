@@ -6,6 +6,7 @@ const String icon_communication = "assets/images/message.png";
 const String icon_store = "assets/images/shopping-cart.png";
 const String icon_menu = "assets/images/menu.png";
 const String icon_search = "assets/images/search.png";
+const String icon_player = "assets/images/play-button-arrowhead.png";
 
 const String player1 = "assets/players/jon_snow.jpeg";
 const String friend_jeenie = "assets/players/jeenie_duhe.jpg";
@@ -17,7 +18,7 @@ const String game_assassin = "assets/games/assassins_creed_odyssey.jpg";
 const String game_dead_cells = "assets/games/dead_cells.jpg";
 const String game_stardew = "assets/games/stardew_valley.jpeg";
 const String game_no_mans_sky = "assets/games/no_mans_sky.jpeg";
-const String game_sekiro = "assets/games/sekiro.png";
+const String game_sekiro_cover = "assets/games/sekiro_cover.jpg";
 const String game_fortnite = "assets/games/fortnite.jpg";
 const String game_apex = "assets/games/apex_legends.jpg";
 const String game_pubg = "assets/games/pubg.png";

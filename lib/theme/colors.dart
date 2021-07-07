@@ -13,6 +13,9 @@ Color opacityCOlor = Colors.white.withOpacity(0.9);
 LinearGradient appGradient =
     LinearGradient(colors: [kPrimaryColor, kSecondaryColor]);
 
+LinearGradient secondAppGradient =
+    LinearGradient(colors: [kQuaternaryColor, kQuinaryColor]);
+
 const kTertiaryColor = Color(0xFFFF006E);
 const kQuaternaryColor = Color(0xFF8338EC);
 const kQuinaryColor = Color(0xFF3A86FF);
