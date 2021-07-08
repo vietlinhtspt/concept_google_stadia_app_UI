@@ -76,9 +76,12 @@ class _StorePageState extends State<StorePage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 18.0),
-              child: Image.asset(
-                product.imagePath,
-                height: 90,
+              child: Hero(
+                tag: product.id,
+                child: Image.asset(
+                  product.imagePath,
+                  height: 90,
+                ),
               ),
             ),
             Padding(
@@ -103,9 +106,12 @@ class _StorePageState extends State<StorePage> {
 
   List<Widget> renderItemStore(Product product) {
     List<Widget> widgetsOutput = [];
-    widgetsOutput.add(Image.asset(
-      product.imagePath,
-      height: MediaQuery.of(context).size.height / 8,
+    widgetsOutput.add(Hero(
+      tag: product.id,
+      child: Image.asset(
+        product.imagePath,
+        height: MediaQuery.of(context).size.height / 8,
+      ),
     ));
 
     widgetsOutput.insert(
@@ -156,20 +162,24 @@ class _StorePageState extends State<StorePage> {
         leading: Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Image.asset(
-              google_logo,
+              stadia_logo_with_name,
               width: 30,
             )),
+        title: Text(
+          "Stadia store",
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Image.asset(icon_search,
                 width: 23, color: Theme.of(context).textTheme.bodyText1.color),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.all(15.0),
-          //   child: Image.asset(icon_store,
-          //       width: 30, color: Theme.of(context).textTheme.bodyText1.color),
-          // ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Image.asset(icon_store,
+                width: 30, color: Theme.of(context).textTheme.bodyText1.color),
+          ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Image.asset(icon_menu,

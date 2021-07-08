@@ -75,9 +75,12 @@ class _ItemDetalPageState extends State<ItemDetalPage> {
                 child: Column(
                   children: [
                     SizedBox(height: 50),
-                    Image.asset(
-                      widget.product.imagePath,
-                      height: 300,
+                    Hero(
+                      tag: widget.product.id,
+                      child: Image.asset(
+                        widget.product.imagePath,
+                        height: 300,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
