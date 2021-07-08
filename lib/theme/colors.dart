@@ -16,6 +16,12 @@ LinearGradient appGradient =
 LinearGradient secondAppGradient =
     LinearGradient(colors: [kQuaternaryColor, kQuinaryColor]);
 
+LinearGradient yellowAppGradient =
+    LinearGradient(colors: [Colors.lime[900], kPrimaryColor]);
+
+LinearGradient greyAppGradient =
+    LinearGradient(colors: [Colors.blueGrey[700], Colors.black]);
+
 const kTertiaryColor = Color(0xFFFF006E);
 const kQuaternaryColor = Color(0xFF8338EC);
 const kQuinaryColor = Color(0xFF3A86FF);

@@ -70,93 +70,98 @@ class _ItemDetalPageState extends State<ItemDetalPage> {
                 )),
             SizedBox(
               height: 650,
-              child: ListView(
-                children: [
-                  SizedBox(height: 50),
-                  Image.asset(
-                    widget.product.imagePath,
-                    height: 300,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(left: 20.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
-                        ),
-                        child: Row(
-                          children: [
-                            for (Color colorOption
-                                in widget.product.optionColor)
-                              InkWell(
-                                onTap: () {
-                                  // print("tab");
-                                  print(isSelectedColor.toString());
-                                  print(colorOption.toString());
-                                  print(select);
-                                  select += 1;
-                                  isSelectedColor = colorOption;
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: colorOption == isSelectedColor
-                                              ? colorOption
-                                              : Colors.transparent,
-                                          width: 2),
-                                      shape: BoxShape.circle),
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    SizedBox(height: 50),
+                    Image.asset(
+                      widget.product.imagePath,
+                      height: 300,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.only(left: 20.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[300],
+                          ),
+                          child: Row(
+                            children: [
+                              for (Color colorOption
+                                  in widget.product.optionColor)
+                                InkWell(
+                                  onTap: () {
+                                    // print("tab");
+                                    print(isSelectedColor.toString());
+                                    print(colorOption.toString());
+                                    print(select);
+                                    select += 1;
+                                    isSelectedColor = colorOption;
+                                    setState(() {});
+                                  },
                                   child: Container(
-                                    height: 15,
-                                    width: 15,
+                                    padding: EdgeInsets.all(3),
                                     decoration: BoxDecoration(
-                                        color: colorOption,
+                                        border: Border.all(
+                                            color:
+                                                colorOption == isSelectedColor
+                                                    ? colorOption
+                                                    : Colors.transparent,
+                                            width: 2),
                                         shape: BoxShape.circle),
+                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                    child: Container(
+                                      height: 15,
+                                      width: 15,
+                                      decoration: BoxDecoration(
+                                          color: colorOption,
+                                          shape: BoxShape.circle),
+                                    ),
                                   ),
-                                ),
-                              )
-                          ],
+                                )
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        // padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(right: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          // color: Colors.grey,
+                        Container(
+                          // padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            // color: Colors.grey,
+                          ),
+                          child: Text(
+                            "\$${widget.product.price}",
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 30),
+                          ),
                         ),
-                        child: Text(
-                          "\$${widget.product.price}",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                          text: widget.product.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5
-                              .copyWith(fontWeight: FontWeight.bold)),
-                      TextSpan(text: "\n"),
-                      TextSpan(text: "\n"),
-                      TextSpan(
-                          text: widget.product.description,
-                          style: TextStyle(color: Colors.grey, height: 1.4))
-                    ])),
-                  ),
-                ],
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: RichText(
+                          text: TextSpan(children: [
+                        TextSpan(
+                            text: widget.product.name,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        TextSpan(text: "\n"),
+                        TextSpan(text: "\n"),
+                        TextSpan(
+                            text: widget.product.description,
+                            style: TextStyle(color: Colors.grey, height: 1.4))
+                      ])),
+                    ),
+                    SizedBox(height: 150),
+                  ],
+                ),
               ),
             ),
             ItemDetailAppBar(),

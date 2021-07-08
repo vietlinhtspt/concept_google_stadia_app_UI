@@ -11,6 +11,7 @@ class PopularWithFriendWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
