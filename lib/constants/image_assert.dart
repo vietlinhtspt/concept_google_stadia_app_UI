@@ -1,5 +1,6 @@
 const String logo = "assets/images/stadia_logo.svg";
 const String google_logo = "assets/images/google_logo.png";
+const String stadia_logo_with_name = "assets/images/stadia_logo_with_name.png";
 
 const String icon_home = "assets/images/console.png";
 const String icon_communication = "assets/images/message.png";
@@ -7,6 +8,7 @@ const String icon_store = "assets/images/shopping-cart.png";
 const String icon_menu = "assets/images/menu.png";
 const String icon_search = "assets/images/search.png";
 const String icon_player = "assets/images/play-button-arrowhead.png";
+const String icon_add_card = "assets/images/add-to-cart.png";
 
 const String player1 = "assets/players/jon_snow.jpeg";
 const String friend_jeenie = "assets/players/jeenie_duhe.jpg";
@@ -22,3 +24,15 @@ const String game_sekiro_cover = "assets/games/sekiro_cover.jpg";
 const String game_fortnite = "assets/games/fortnite.jpg";
 const String game_apex = "assets/games/apex_legends.jpg";
 const String game_pubg = "assets/games/pubg.png";
+
+const String product_day_dream = "assets/images/day_dream.png";
+const String product_game_controller =
+    "assets/images/game_console_controller.png";
+const String prodcut_game_controller_cast =
+    "assets/images/game_console_controller+cast.png";
+const String product_google_home_hub = "assets/images/google_home_hub.png";
+const String product_google_home_mini = "assets/images/google_home_mini.png";
+const String product_google_home = "assets/images/google_home.png";
+const String product_pixel_buds = "assets/images/pixel_buds.png";
+const String product_pixel_phone = "assets/images/pixel_phone.png";
+const String product_pixel_stand = "assets/images/pixel_stand.png";

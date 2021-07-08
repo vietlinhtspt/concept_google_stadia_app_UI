@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stadia_app/constants/image_assert.dart';
 import 'package:stadia_app/models/last_played_game.dart';
 import 'package:stadia_app/theme/colors.dart';
-import 'package:stadia_app/widgets/home_page/app_bar.dart';
 import 'package:stadia_app/widgets/home_page/friends_tile.dart';
 import 'package:stadia_app/commons/header_tile.dart';
 import 'package:stadia_app/widgets/home_page/hours_played_tile.dart';
@@ -40,32 +39,36 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     semanticsLabel: "Logo",
                   )),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                UserInfoTile(
-                  size: 97,
-                  imagePath: player1,
-                  level: 39,
-                  color: Theme.of(context).primaryColor,
-                ),
-                HoursPlayedTile(screenWidth: screenWidth),
-                HeaderTitle(title: "Last Played games"),
-                for (var playedGameItem in lastPlayedGames)
-                  LastPlayedGameTile(
-                      playedGameItem: playedGameItem, screenWidth: screenWidth),
-                SizedBox(
-                  height: 5,
-                ),
-                HeaderTitle(title: "Friends"),
-                SizedBox(
-                  height: 5,
-                ),
-                FriendsTile(),
-              ],
+            SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  UserInfoTile(
+                    size: 97,
+                    imagePath: player1,
+                    level: 39,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  HoursPlayedTile(screenWidth: screenWidth),
+                  HeaderTitle(title: "Last Played games"),
+                  for (var playedGameItem in lastPlayedGames)
+                    LastPlayedGameTile(
+                        playedGameItem: playedGameItem,
+                        screenWidth: screenWidth),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  HeaderTitle(title: "Friends"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  FriendsTile(),
+                ],
+              ),
             )
           ],
         ),

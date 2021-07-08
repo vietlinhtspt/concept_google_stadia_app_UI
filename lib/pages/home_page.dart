@@ -15,26 +15,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Expanded(
-        flex: 5,
-        child: Stack(
-          children: [
-            Image.asset(
-              game_sekiro_cover,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fitHeight,
-            ),
-            Container(
-              color: Colors.black.withOpacity(0.2),
-            ),
-            NewGameWidget(),
-          ],
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(children: [
+        SizedBox(
+          height: 300,
+          child: Stack(
+            children: [
+              Image.asset(
+                game_sekiro_cover,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fitHeight,
+              ),
+              Container(
+                color: Colors.black.withOpacity(0.2),
+              ),
+              NewGameWidget(),
+            ],
+          ),
         ),
-      ),
-      Expanded(
-          flex: 5,
+        SizedBox(
+          height: 275,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -47,9 +49,10 @@ class _HomePageState extends State<HomePage> {
               ),
               PopularWithFriendWidget()
             ],
-          )),
-      Expanded(
-          flex: 3,
+          ),
+        ),
+        SizedBox(
+          height: 200,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -59,7 +62,9 @@ class _HomePageState extends State<HomePage> {
               ),
               ContinuePlayingWidget()
             ],
-          )),
-    ]);
+          ),
+        ),
+      ]),
+    );
   }
 }
