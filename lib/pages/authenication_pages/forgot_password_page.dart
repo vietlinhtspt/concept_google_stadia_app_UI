@@ -37,9 +37,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 60),
-                  child: Image.asset(
-                    stadia_logo_with_name,
-                    height: 100,
+                  child: Hero(
+                    tag: "stadia_logo_with_name",
+                    child: Image.asset(
+                      stadia_logo_with_name,
+                      height: 100,
+                    ),
                   ),
                 ),
               ),

@@ -19,9 +19,12 @@ class _IntroPageState extends State<IntroPage> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
-                child: Image.asset(
-                  stadia_logo_with_name,
-                  // height: 150,
+                child: Hero(
+                  tag: "stadia_logo_with_name",
+                  child: Image.asset(
+                    stadia_logo_with_name,
+                    // height: 150,
+                  ),
                 ),
               ),
             ),

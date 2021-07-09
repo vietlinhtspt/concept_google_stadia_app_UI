@@ -28,21 +28,31 @@ class ItemDetailAppBar extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image.asset(icon_search,
-                  width: 23,
-                  color: Theme.of(context).textTheme.bodyText1.color),
+              child: Hero(
+                tag: "searching_icon",
+                child: Image.asset(icon_search,
+                    width: 23,
+                    color: Theme.of(context).textTheme.bodyText1.color),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image.asset(icon_store,
-                  width: 30,
-                  color: Theme.of(context).textTheme.bodyText1.color),
+              child: Hero(
+                tag: "store_icon",
+                child: Image.asset(icon_store,
+                    width: 30,
+                    color: Theme.of(context).textTheme.bodyText1.color),
+              ),
             ),
             Padding(
+            
               padding: const EdgeInsets.all(20.0),
-              child: Image.asset(icon_menu,
-                  width: 30,
-                  color: Theme.of(context).textTheme.bodyText1.color),
+              child: Hero(
+                tag: "menu_icon",
+                child: Image.asset(icon_menu,
+                    width: 30,
+                    color: Theme.of(context).textTheme.bodyText1.color),
+              ),
             )
           ],
         )
