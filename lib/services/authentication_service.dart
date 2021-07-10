@@ -20,6 +20,25 @@ class AuthenticationService {
 
   // Log in services
 
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    return await this._firebaseAuth.signInWithEmailAndPassword(
+        email: email.trim(), password: password.trim());
+  }
+
+  Future<void> signOut() async {
+    print("Calling sign Out");
+    return Future.wait(
+        [this._firebaseAuth.signOut(), this._googleSignIn.signOut()]);
+  }
+
+  Future<bool> isSignedIn() async {
+    return await this._firebaseAuth.currentUser() != null;
+  }
+
+  Future<FirebaseUser> getCurrentUser() async {
+    return await this._firebaseAuth.currentUser();
+  }
+
   // incognito services
 
   // forgot password services

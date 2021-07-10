@@ -32,7 +32,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<SignUpState> submit(String email, String password) async {
-    print("Submit in cubit");
     emit(SignUpState.submit());
     try {
       await authenticationService.createUserWithEmailAndPassword(

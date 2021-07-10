@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stadia_app/commons/header_tile.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/cubits/authentication_cubit.dart';
 import 'package:stadia_app/widgets/home_page/continue_playing_widget.dart';
 import 'package:stadia_app/widgets/home_page/new_game_widget.dart';
 import 'package:stadia_app/widgets/home_page/popularWithFriendWidget.dart';

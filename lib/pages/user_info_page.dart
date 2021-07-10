@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/cubits/authentication_cubit.dart';
 import 'package:stadia_app/models/last_played_game.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/theme/colors.dart';
 import 'package:stadia_app/widgets/home_page/friends_tile.dart';
 import 'package:stadia_app/commons/header_tile.dart';
@@ -11,7 +13,9 @@ import 'package:stadia_app/commons/last_played_game_tile.dart';
 import 'package:stadia_app/widgets/home_page/user_info_tile.dart';
 
 class UserInfoPage extends StatefulWidget {
-  const UserInfoPage({Key key}) : super(key: key);
+  const UserInfoPage({
+    Key key,
+  }) : super(key: key);
 
   @override
   _UserInfoPageState createState() => _UserInfoPageState();
@@ -25,7 +29,20 @@ class _UserInfoPageState extends State<UserInfoPage> {
     final logoSize = screenHeight * 0.4;
     return Material(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            InkWell(
+              onTap: () async {
+                await BlocProvider.of<AuthenticationCubit>(context).logOut();
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Icon(Icons.logout),
+              ),
+            )
+          ],
+        ),
         body: Stack(
           children: [
             Transform.translate(

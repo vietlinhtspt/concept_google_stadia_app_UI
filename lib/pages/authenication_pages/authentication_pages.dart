@@ -1,6 +1,10 @@
+import 'dart:wasm';
+
 import 'package:flutter/material.dart';
 import 'package:stadia_app/commons/gradient_button.dart';
 import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/cubits/authentication_cubit.dart';
+import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/forgot_password_page.dart';
 import 'package:stadia_app/pages/authenication_pages/log_in_page.dart';
 import 'package:stadia_app/pages/authenication_pages/sign_up_page.dart';
@@ -10,8 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/cubits/sign_up_cubit.dart';
 
 class AuthenticationPages extends StatefulWidget {
-  final AuthenticationService authenticationService = AuthenticationService();
-  AuthenticationPages({Key key}) : super(key: key);
+  AuthenticationPages({
+    Key key,
+  }) : super(key: key);
 
   @override
   _AuthenticationPagesState createState() => _AuthenticationPagesState();
@@ -50,14 +55,8 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
                 gradient: secondAppGradient,
                 onTap: () {
                   // print("on tab");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BlocProvider(
-                                create: (context) =>
-                                    SignUpCubit(widget.authenticationService),
-                                child: SignUpPage(),
-                              )));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()));
                 },
               ),
               GradientButton(
