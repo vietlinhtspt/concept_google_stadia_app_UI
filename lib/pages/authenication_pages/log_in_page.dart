@@ -120,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                 (() {
                   if (loginState.isSuccess) {
                     Future.delayed(Duration.zero, () {
-                      Navigator.maybePop(context);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/', ModalRoute.withName('/'));
                     });
                     on_login_success(context);
                   }
