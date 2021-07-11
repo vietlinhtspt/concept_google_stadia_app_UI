@@ -14,7 +14,7 @@ const List<StadiaProduct> stadia_products = [
       price: 129),
   StadiaProduct(
       name: "STADIA - White",
-      imagePath: product_game_controller_black,
+      imagePath: product_game_controller,
       price: 129),
   StadiaProduct(
       name: "STADIA - Founder Edition",
