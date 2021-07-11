@@ -27,7 +27,7 @@ class AuthenticationService {
 
   Future<void> signOut() async {
     print("Calling sign Out");
-    return Future.wait(
+    return await Future.wait(
         [this._firebaseAuth.signOut(), this._googleSignIn.signOut()]);
   }
 

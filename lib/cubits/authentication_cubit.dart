@@ -22,9 +22,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void logIn() async {
-    print(await this.authenticationService.getCurrentUser().toString());
-    emit(AuthenticationStateSuccess(
-        firebaseUser: await this.authenticationService.getCurrentUser()));
+    final bool isSignedIn = await this.authenticationService.isSignedIn();
+    if (isSignedIn) {
+      emit(AuthenticationStateSuccess(
+          firebaseUser: await this.authenticationService.getCurrentUser()));
+    } else {
+      emit(AuthenticationStateFailure());
+    }
   }
 
   void logOut() async {

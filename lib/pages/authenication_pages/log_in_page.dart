@@ -7,6 +7,7 @@ import 'package:stadia_app/constants/image_assert.dart';
 import 'package:stadia_app/cubits/authentication_cubit.dart';
 import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/main.dart';
+import 'package:stadia_app/pages/authenication_pages/authentication_pages.dart';
 import 'package:stadia_app/pages/authenication_pages/forgot_password_page.dart';
 import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/states/login_state.dart';
@@ -28,8 +29,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    loginCubit = BlocProvider.of<LoginCubit>(context);
     super.initState();
+    loginCubit = BlocProvider.of<LoginCubit>(context);
+
     _emailEditingController.addListener(() {
       // print(this._emailEditingController.text);
       loginCubit.emailChanged(this._emailEditingController.text);
@@ -51,14 +53,15 @@ class _LoginPageState extends State<LoginPage> {
   void clean_input() {
     this._emailEditingController.clear();
     this._passwordController.clear();
+    BlocProvider.of<LoginCubit>(context).reset();
   }
 
   void on_login_success(BuildContext context) async {
     await BlocProvider.of<AuthenticationCubit>(context).logIn();
     clean_input();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Navigator.maybePop(context);
-    });
+    // await SchedulerBinding.instance.addPostFrameCallback((_) async {
+
+    // });
   }
 
   @override
@@ -70,22 +73,19 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(children: [
         BlocBuilder<LoginCubit, LoginState>(
           builder: (context, loginState) {
-            if (loginState.isSuccess) {
-              // print("Login success");
-              on_login_success(context);
-              // Navigator.pop(context);
-            }
+            // if (loginState.isSuccess) {
+            //   // print("Login success");
+
+            //   // on_login_success(context);
+            // }
             return Column(
               children: [
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60),
-                    child: Hero(
-                      tag: "stadia_logo_with_name",
-                      child: Image.asset(
-                        stadia_logo_with_name,
-                        height: 100,
-                      ),
+                    child: Image.asset(
+                      stadia_logo_with_name,
+                      height: 100,
                     ),
                   ),
                 ),
@@ -117,10 +117,16 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         )
                       : SizedBox(),
-                // (() {
-                //   print(MediaQuery.of(this.context).viewInsets.bottom);
-                //   return SizedBox();
-                // }()),
+                (() {
+                  if (loginState.isSuccess) {
+                    Future.delayed(Duration.zero, () {
+                      Navigator.maybePop(context);
+                    });
+                    on_login_success(context);
+                  }
+
+                  return SizedBox();
+                }()),
                 if (loginState.isSuccess)
                   MediaQuery.of(this.context).viewInsets.bottom == 0
                       ? SizedBox(

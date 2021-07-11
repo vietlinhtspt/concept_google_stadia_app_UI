@@ -11,19 +11,23 @@ class LoginCubit extends Cubit<LoginState> {
         this.authenticationService = authenticationService,
         super(LoginState.initial());
 
-  Future<LoginState> emailChanged(String email) async {
+  void reset() {
+    emit(LoginState.initial());
+  }
+
+  void emailChanged(String email) async {
     final LoginState loginState = state;
     emit(loginState.copyWith(
         isValidEmail: AuthenticationValidator.isValidEmail(email.trim())));
   }
 
-  Future<LoginState> passwordChanged(String password) async {
+  void passwordChanged(String password) async {
     final LoginState loginState = state;
     emit(loginState.copyWith(
         isValidPassword: AuthenticationValidator.isValidPassword(password)));
   }
 
-  Future<LoginState> submit(String email, String password) async {
+  void submit(String email, String password) async {
     emit(LoginState.submit());
     try {
       await authenticationService.signInWithEmailAndPassword(
