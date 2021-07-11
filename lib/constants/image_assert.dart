@@ -26,10 +26,16 @@ const String game_apex = "assets/games/apex_legends.jpg";
 const String game_pubg = "assets/games/pubg.png";
 
 const String product_day_dream = "assets/images/day_dream.png";
-const String product_game_controller =
-    "assets/images/game_console_controller.png";
+const String product_game_controller = "assets/images/stadia_remote_white.png";
+const String product_game_controller_black =
+    "assets/images/stadia_remote_black.png";
+const String product_game_controller_wasabi =
+    "assets/images/stadia_remote_wasabi.png";
+const String product_game_controller_founder_edition =
+    "assets/images/stadia_remote_founder_edition.png";
 const String prodcut_game_controller_cast =
     "assets/images/game_console_controller+cast.png";
+const String product_goole_cast = "assets/images/chrome_cast_ultra.png";
 const String product_google_home_hub = "assets/images/google_home_hub.png";
 const String product_google_home_mini = "assets/images/google_home_mini.png";
 const String product_google_home = "assets/images/google_home.png";

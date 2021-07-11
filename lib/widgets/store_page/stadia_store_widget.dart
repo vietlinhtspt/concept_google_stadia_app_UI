@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/models/stadia_shop.dart';
+import 'package:stadia_app/widgets/store_page/shop_stadia_item.dart';
 
 class ShopStadiaWidget extends StatelessWidget {
   const ShopStadiaWidget({
@@ -7,6 +10,12 @@ class ShopStadiaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Shop Stadia widget"));
+    return SingleChildScrollView(
+        child: Column(children: [
+      for (StadiaProduct item in stadia_products)
+        ShopStatiaItem(
+          stadiaProduct: item,
+        )
+    ]));
   }
 }

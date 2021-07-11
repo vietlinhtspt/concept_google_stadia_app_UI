@@ -25,6 +25,8 @@ LinearGradient greyAppGradient =
 LinearGradient notEnalbleAppGradient =
     LinearGradient(colors: [Colors.grey[700], Colors.black]);
 
+const hintColor = Color.fromRGBO(189, 35, 0, 1);
+
 const kTertiaryColor = Color(0xFFFF006E);
 const kQuaternaryColor = Color(0xFF8338EC);
 const kQuinaryColor = Color(0xFF3A86FF);

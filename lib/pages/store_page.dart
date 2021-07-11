@@ -7,6 +7,7 @@ import 'package:stadia_app/pages/item_detal_page.dart';
 import 'package:stadia_app/widgets/store_page/game_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/google_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/stadia_store_widget.dart';
+import 'package:stadia_app/widgets/store_page/store_tab_label_widget.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({Key key}) : super(key: key);
@@ -86,49 +87,22 @@ class _StorePageState extends State<StorePage> with TickerProviderStateMixin {
             indicatorColor: Colors.transparent,
             tabs: <Widget>[
               Tab(
-                child: Text(
-                  "SHOP STADIA",
-                  style: this._tabController.index == 0
-                      ? Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold)
-                          .apply(color: Theme.of(context).primaryColor)
-                      : Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
+                child: StoreTabLabel(
+                    index: 0,
+                    label: "SHOP STADIA",
+                    tabController: _tabController),
               ),
               Tab(
-                child: Text(
-                  "SHOP GAME",
-                  style: _tabController.index == 1
-                      ? Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold)
-                          .apply(color: Theme.of(context).primaryColor)
-                      : Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
+                child: StoreTabLabel(
+                    index: 1,
+                    label: "SHOP GAME",
+                    tabController: _tabController),
               ),
               Tab(
-                child: Text(
-                  "SHOP GOOGLE",
-                  style: _tabController.index == 2
-                      ? Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold)
-                          .apply(color: Theme.of(context).primaryColor)
-                      : Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
+                child: StoreTabLabel(
+                    index: 2,
+                    label: "SHOP GOOGLE",
+                    tabController: _tabController),
               )
             ],
           ),
