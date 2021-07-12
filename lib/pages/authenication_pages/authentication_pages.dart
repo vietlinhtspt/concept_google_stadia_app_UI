@@ -78,6 +78,14 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
                   BlocProvider.of<LoginCubit>(context).loginWithGoogle();
                 },
               ),
+              GradientButton(
+                text: "LOG IN WITH FACEBOOK",
+                gradient: appGradient,
+                onTap: () {
+                  // print("on tab");
+                  BlocProvider.of<LoginCubit>(context).loginWithFacebook();
+                },
+              ),
               Text(
                 "Or",
                 style: Theme.of(context).textTheme.headline6,
