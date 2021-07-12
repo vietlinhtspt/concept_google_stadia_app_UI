@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _submitEmailAndPassword() async {
-    print("Submit in Page");
+    // print("Submit in Page");
     signUpCubit.submit(
         this._emailEditingController.text, this._passwordController.text);
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stadia_app/constants/image_assert.dart';
 
 class ShopGameWidget extends StatelessWidget {
   const ShopGameWidget({
@@ -7,6 +8,6 @@ class ShopGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Shop Game widget"));
+    return Container(child: Text("Shop Stadia widget"));
   }
 }

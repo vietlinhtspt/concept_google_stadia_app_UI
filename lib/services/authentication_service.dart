@@ -42,4 +42,7 @@ class AuthenticationService {
   // incognito services
 
   // forgot password services
+  Future<void> resetPassword(String email) async {
+    return await this._firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }

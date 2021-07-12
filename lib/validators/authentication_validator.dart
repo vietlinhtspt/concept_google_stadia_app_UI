@@ -8,4 +8,5 @@ class AuthenticationValidator {
   }
 
   static isValidPassword(String password) => password.length >= 6;
+  static isValidVerifyCode(String verifyCode) => verifyCode.length == 6;
 }
