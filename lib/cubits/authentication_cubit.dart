@@ -13,8 +13,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void checkLoggedIn() async {
     final bool isSignedIn = await this.authenticationService.isSignedIn();
     if (isSignedIn) {
-      FirebaseUser currentUser =
-          await this.authenticationService.getCurrentUser();
+      User currentUser = await this.authenticationService.getCurrentUser();
       emit(AuthenticationStateSuccess(firebaseUser: currentUser));
     } else {
       emit(AuthenticationStateFailure());

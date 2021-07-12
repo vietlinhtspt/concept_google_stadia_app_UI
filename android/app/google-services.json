@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "982846403213",
+    "project_id": "stadiaconcept",
+    "storage_bucket": "stadiaconcept.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982846403213:android:8b7dbc0efb20de6e39e8c4",
+        "android_client_info": {
+          "package_name": "com.example.stadia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982846403213-4sfnau8uagbivs58ltgkjoluem3ecj06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stadia_app",
+            "certificate_hash": "339b5c8987939fd547ab9665f154ee4e0cf314e2"
+          }
+        },
+        {
+          "client_id": "982846403213-tmugda2i8ktffleau15modglrn0u5uem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRl4YIM4UcrWVod1FHd0JTW7hRLF5VK_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982846403213-tmugda2i8ktffleau15modglrn0u5uem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

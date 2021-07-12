@@ -19,6 +19,18 @@ class AuthenticationService {
   }
 
   // Log in services
+  Future<User> signInWithGoogle() async {
+    final GoogleSignInAccount googleSignInAccount =
+        await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
+    final AuthCredential authCredential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.accessToken,
+        accessToken: googleSignInAuthentication.idToken);
+    await _firebaseAuth.signInWithCredential(authCredential);
+    final currentUser = _firebaseAuth.currentUser;
+    return currentUser;
+  }
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     return await this._firebaseAuth.signInWithEmailAndPassword(
@@ -32,11 +44,11 @@ class AuthenticationService {
   }
 
   Future<bool> isSignedIn() async {
-    return await this._firebaseAuth.currentUser() != null;
+    return await this._firebaseAuth.currentUser != null;
   }
 
-  Future<FirebaseUser> getCurrentUser() async {
-    return await this._firebaseAuth.currentUser();
+  Future<User> getCurrentUser() async {
+    return await this._firebaseAuth.currentUser;
   }
 
   // incognito services

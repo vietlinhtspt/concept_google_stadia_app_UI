@@ -43,4 +43,20 @@ class LoginCubit extends Cubit<LoginState> {
           "Some thing wrong with server, try again in minutes or contact service.");
     }
   }
+
+  void loginWithGoogle() async {
+    emit(LoginState.submit());
+    try {
+      await authenticationService.signInWithGoogle();
+      emit(LoginState.success());
+    } on PlatformException catch (err) {
+      emit(LoginState.failure(err.message));
+      // Handle err
+    } catch (err) {
+      // other types of Exceptions
+      print(err);
+      LoginState.failure(
+          "Some thing wrong with server, try again in minutes or contact service.");
+    }
+  }
 }

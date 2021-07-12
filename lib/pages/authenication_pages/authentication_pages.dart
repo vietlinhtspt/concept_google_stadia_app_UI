@@ -70,6 +70,14 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
                           builder: (context) => ForgotPasswordPage()));
                 },
               ),
+              GradientButton(
+                text: "LOG IN WITH GOOGLE",
+                gradient: appGradient,
+                onTap: () {
+                  // print("on tab");
+                  BlocProvider.of<LoginCubit>(context).loginWithGoogle();
+                },
+              ),
               Text(
                 "Or",
                 style: Theme.of(context).textTheme.headline6,

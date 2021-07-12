@@ -11,7 +11,7 @@ class AuthenticationStateInitial extends AuthenticationState {}
 class AuthenticationStateFailure extends AuthenticationState {}
 
 class AuthenticationStateSuccess extends AuthenticationState {
-  final FirebaseUser firebaseUser;
+  final User firebaseUser;
   AuthenticationStateSuccess({this.firebaseUser});
   @override
   List<Object> get props => [this.firebaseUser];

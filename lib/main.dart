@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/constants/image_assert.dart';
@@ -15,7 +16,9 @@ import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/states/authentication_state.dart';
 import 'package:stadia_app/theme/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
