@@ -12,26 +12,26 @@ class SignUpCubit extends Cubit<SignUpState> {
         this.authenticationService = authenticationService,
         super(SignUpState.initial());
 
-  Future<SignUpState> emailChanged(String email) async {
+  void emailChanged(String email) async {
     final SignUpState signUpState = state;
     emit(signUpState.copyWith(
         isValidEmail: AuthenticationValidator.isValidEmail(email.trim())));
   }
 
-  Future<SignUpState> passwordChanged(String password) async {
+  void passwordChanged(String password) async {
     final SignUpState signUpState = state;
     emit(signUpState.copyWith(
         isValidPassword: AuthenticationValidator.isValidPassword(password)));
   }
 
-  Future<SignUpState> confirmPasswordChanged(String password) async {
+  void confirmPasswordChanged(String password) async {
     final SignUpState signUpState = state;
     emit(signUpState.copyWith(
         isValidConfirmPassword:
             AuthenticationValidator.isValidPassword(password)));
   }
 
-  Future<SignUpState> submit(String email, String password) async {
+  void submit(String email, String password) async {
     emit(SignUpState.submit());
     try {
       await authenticationService.createUserWithEmailAndPassword(

@@ -2,7 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/states/forgot_password_state.dart';
-import 'package:stadia_app/states/login_state.dart';
 import 'package:stadia_app/validators/authentication_validator.dart';
 
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {

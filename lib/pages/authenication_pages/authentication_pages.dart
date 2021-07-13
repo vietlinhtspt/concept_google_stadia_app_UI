@@ -1,5 +1,3 @@
-import 'dart:wasm';
-
 import 'package:flutter/material.dart';
 import 'package:stadia_app/commons/gradient_button.dart';
 import 'package:stadia_app/constants/image_assert.dart';
@@ -10,9 +8,7 @@ import 'package:stadia_app/pages/authenication_pages/log_in_page.dart';
 import 'package:stadia_app/pages/authenication_pages/sign_up_page.dart';
 import 'package:stadia_app/states/login_state.dart';
 import 'package:stadia_app/theme/colors.dart';
-import 'package:stadia_app/services/authentication_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stadia_app/cubits/sign_up_cubit.dart';
 
 class AuthenticationPages extends StatefulWidget {
   AuthenticationPages({

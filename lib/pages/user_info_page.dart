@@ -32,8 +32,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
         appBar: AppBar(
           actions: [
             InkWell(
-              onTap: () async {
-                await BlocProvider.of<AuthenticationCubit>(context).logOut();
+              onTap: () {
+                BlocProvider.of<AuthenticationCubit>(context).logOut();
                 Navigator.pop(context);
               },
               child: Padding(

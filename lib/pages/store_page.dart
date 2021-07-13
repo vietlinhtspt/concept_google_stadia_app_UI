@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:stadia_app/constants/image_assert.dart';
-import 'package:stadia_app/models/products.dart';
-import 'package:stadia_app/pages/item_detal_page.dart';
 import 'package:stadia_app/widgets/store_page/game_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/google_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/stadia_store_widget.dart';

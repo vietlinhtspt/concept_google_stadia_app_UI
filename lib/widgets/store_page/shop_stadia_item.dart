@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stadia_app/constants/image_assert.dart';
 import 'package:stadia_app/models/stadia_shop.dart';
 
 class ShopStatiaItem extends StatelessWidget {

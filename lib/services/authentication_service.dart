@@ -68,12 +68,12 @@ class AuthenticationService {
     ]);
   }
 
-  Future<bool> isSignedIn() async {
-    return await this._firebaseAuth.currentUser != null;
+  bool isSignedIn() {
+    return this._firebaseAuth.currentUser != null;
   }
 
-  Future<User> getCurrentUser() async {
-    return await this._firebaseAuth.currentUser;
+  User getCurrentUser() {
+    return this._firebaseAuth.currentUser;
   }
 
   // incognito services

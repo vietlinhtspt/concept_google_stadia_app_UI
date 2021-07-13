@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stadia_app/commons/gradient_button.dart';
 import 'package:stadia_app/commons/text_field_custom.dart';
 import 'package:stadia_app/constants/image_assert.dart';
-import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/log_in_page.dart';
-import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/theme/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/cubits/sign_up_cubit.dart';
@@ -172,9 +170,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     // // print("on tab");
                     // Navigator.push(context,
                     //     MaterialPageRoute(builder: (context) => SignUpPage()));
-                    this.isEnableSignUpButton(signUpState)
-                        ? _submitEmailAndPassword()
-                        : null;
+                    if (this.isEnableSignUpButton(signUpState))
+                      _submitEmailAndPassword();
                   },
                 ),
               ],

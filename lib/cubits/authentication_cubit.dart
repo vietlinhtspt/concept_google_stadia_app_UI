@@ -11,9 +11,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         super(AuthenticationStateInitial());
 
   void checkLoggedIn() async {
-    final bool isSignedIn = await this.authenticationService.isSignedIn();
+    final bool isSignedIn =  this.authenticationService.isSignedIn();
     if (isSignedIn) {
-      User currentUser = await this.authenticationService.getCurrentUser();
+      User currentUser =  this.authenticationService.getCurrentUser();
       emit(AuthenticationStateSuccess(firebaseUser: currentUser));
     } else {
       emit(AuthenticationStateFailure());
@@ -21,10 +21,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void logIn() async {
-    final bool isSignedIn = await this.authenticationService.isSignedIn();
+    final bool isSignedIn =  this.authenticationService.isSignedIn();
     if (isSignedIn) {
       emit(AuthenticationStateSuccess(
-          firebaseUser: await this.authenticationService.getCurrentUser()));
+          firebaseUser:  this.authenticationService.getCurrentUser()));
     } else {
       emit(AuthenticationStateFailure());
     }

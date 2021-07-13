@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/commons/gradient_button.dart';
 import 'package:stadia_app/commons/text_field_custom.dart';
 import 'package:stadia_app/constants/image_assert.dart';
 import 'package:stadia_app/cubits/authentication_cubit.dart';
 import 'package:stadia_app/cubits/login_cubit.dart';
-import 'package:stadia_app/main.dart';
-import 'package:stadia_app/pages/authenication_pages/authentication_pages.dart';
 import 'package:stadia_app/pages/authenication_pages/forgot_password_page.dart';
-import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/states/login_state.dart';
 import 'package:stadia_app/theme/colors.dart';
 
@@ -50,15 +46,15 @@ class _LoginPageState extends State<LoginPage> {
         this._emailEditingController.text, this._passwordController.text);
   }
 
-  void clean_input() {
+  void cleanInput() {
     this._emailEditingController.clear();
     this._passwordController.clear();
     BlocProvider.of<LoginCubit>(context).reset();
   }
 
-  void on_login_success(BuildContext context) async {
-    await BlocProvider.of<AuthenticationCubit>(context).logIn();
-    clean_input();
+  void onLoginSuccess(BuildContext context) {
+    BlocProvider.of<AuthenticationCubit>(context).logIn();
+    cleanInput();
     // await SchedulerBinding.instance.addPostFrameCallback((_) async {
 
     // });
@@ -76,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
             // if (loginState.isSuccess) {
             //   // print("Login success");
 
-            //   // on_login_success(context);
+            //   // onLoginSuccess(context);
             // }
             return Column(
               children: [
@@ -126,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/', ModalRoute.withName('/'));
                     });
-                    on_login_success(context);
+                    onLoginSuccess(context);
                   }
 
                   return SizedBox();
