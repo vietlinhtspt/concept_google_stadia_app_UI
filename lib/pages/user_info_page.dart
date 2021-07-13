@@ -84,6 +84,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     height: 5,
                   ),
                   FriendsTile(),
+                  SizedBox(height: 40)
                 ],
               ),
             )
