@@ -8,6 +8,7 @@ import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/forgot_password_page.dart';
 import 'package:stadia_app/pages/authenication_pages/log_in_page.dart';
 import 'package:stadia_app/pages/authenication_pages/sign_up_page.dart';
+import 'package:stadia_app/states/login_state.dart';
 import 'package:stadia_app/theme/colors.dart';
 import 'package:stadia_app/services/authentication_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,12 +71,18 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
                           builder: (context) => ForgotPasswordPage()));
                 },
               ),
-              GradientButton(
-                text: "LOG IN WITH GOOGLE",
-                gradient: appGradient,
-                onTap: () {
-                  // print("on tab");
-                  BlocProvider.of<LoginCubit>(context).loginWithGoogle();
+              BlocBuilder<LoginCubit, LoginState>(
+                builder: (context, loginState) {
+                  if (loginState.isSuccess)
+                    BlocProvider.of<AuthenticationCubit>(context).logIn();
+                  return GradientButton(
+                    text: "LOG IN WITH GOOGLE",
+                    gradient: appGradient,
+                    onTap: () {
+                      // print("on tab");
+                      BlocProvider.of<LoginCubit>(context).loginWithGoogle();
+                    },
+                  );
                 },
               ),
               GradientButton(

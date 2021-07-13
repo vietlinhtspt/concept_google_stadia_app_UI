@@ -7,7 +7,6 @@ import 'package:stadia_app/cubits/forgot_password_cubit.dart';
 import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/cubits/sign_up_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/authentication_pages.dart';
-import 'package:stadia_app/pages/authenication_pages/intro_page.dart';
 import 'package:stadia_app/pages/communication_page.dart';
 import 'package:stadia_app/pages/home_page.dart';
 import 'package:stadia_app/pages/splash.dart';
