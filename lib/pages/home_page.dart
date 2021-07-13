@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         SizedBox(
-          height: 200,
+          height: 180,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -61,6 +61,19 @@ class _HomePageState extends State<HomePage> {
                 height: 15,
               ),
               ContinuePlayingWidget()
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 275,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderTitle(title: "Popular"),
+              SizedBox(
+                height: 12,
+              ),
+              PopularWithFriendWidget()
             ],
           ),
         ),

@@ -24,6 +24,8 @@ const String game_sekiro_cover = "assets/games/sekiro_cover.jpg";
 const String game_fortnite = "assets/games/fortnite.jpg";
 const String game_apex = "assets/games/apex_legends.jpg";
 const String game_pubg = "assets/games/pubg.png";
+const String game_fifa = "assets/games/fifa_2019.jpg";
+const String game_starwar = "assets/games/star_wars_jedijpg.jpg";
 
 const String product_day_dream = "assets/images/day_dream.png";
 const String product_game_controller = "assets/images/stadia_remote_white.png";

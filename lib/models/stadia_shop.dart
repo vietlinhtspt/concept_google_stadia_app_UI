@@ -1,29 +1,51 @@
+import 'package:flutter/material.dart';
 import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/models/products.dart';
 
-class StadiaProduct {
-  final String name, imagePath;
-  final int price;
-
-  const StadiaProduct({this.name, this.imagePath, this.price});
-}
-
-const List<StadiaProduct> stadia_products = [
-  StadiaProduct(
-      name: "STADIA - Wasabi",
-      imagePath: product_game_controller_wasabi,
-      price: 129),
-  StadiaProduct(
-      name: "STADIA - White",
-      imagePath: product_game_controller,
-      price: 129),
-  StadiaProduct(
-      name: "STADIA - Founder Edition",
-      imagePath: product_game_controller_founder_edition,
-      price: 159),
-  StadiaProduct(
-      name: "STADIA - Black",
-      imagePath: product_game_controller_black,
-      price: 129),
-  StadiaProduct(
-      name: "Google Cast Ultra", imagePath: product_goole_cast, price: 129)
+const List<Product> stadia_products = [
+  Product(
+    price: 129,
+    id: 101,
+    name: "STADIA - Wasabi",
+    imagePath: product_game_controller_wasabi,
+    optionColor: [Colors.black, Colors.white, Colors.orange],
+    learnMore: "https://store.google.com/us/product/pixel_5?hl=en-US",
+    description: fakeDescription,
+  ),
+  Product(
+    price: 129,
+    id: 102,
+    name: "STADIA - White",
+    imagePath: product_game_controller,
+    optionColor: [Colors.black, Colors.white, Colors.orange],
+    learnMore: "https://store.google.com/us/product/pixel_5?hl=en-US",
+    description: fakeDescription,
+  ),
+  Product(
+    price: 129,
+    id: 103,
+    name: "STADIA - Founder Edition",
+    imagePath: product_game_controller_founder_edition,
+    optionColor: [Colors.black, Colors.white, Colors.orange],
+    learnMore: "https://store.google.com/us/product/pixel_5?hl=en-US",
+    description: fakeDescription,
+  ),
+  Product(
+    price: 129,
+    id: 104,
+    name: "STADIA - Black",
+    imagePath: product_game_controller_black,
+    optionColor: [Colors.black, Colors.white, Colors.orange],
+    learnMore: "https://store.google.com/us/product/pixel_5?hl=en-US",
+    description: fakeDescription,
+  ),
+  Product(
+    price: 129,
+    id: 105,
+    name: "Google Cast Ultra",
+    imagePath: product_goole_cast,
+    optionColor: [Colors.black, Colors.white, Colors.orange],
+    learnMore: "https://store.google.com/us/product/pixel_5?hl=en-US",
+    description: fakeDescription,
+  ),
 ];

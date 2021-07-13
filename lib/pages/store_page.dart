@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:stadia_app/constants/image_assert.dart';
-import 'package:stadia_app/widgets/store_page/game_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/google_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/stadia_store_widget.dart';
 import 'package:stadia_app/widgets/store_page/store_tab_label_widget.dart';
@@ -24,7 +23,7 @@ class _StorePageState extends State<StorePage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
     super.initState();
   }
@@ -90,15 +89,15 @@ class _StorePageState extends State<StorePage> with TickerProviderStateMixin {
                     label: "SHOP STADIA",
                     tabController: _tabController),
               ),
+              // Tab(
+              //   child: StoreTabLabel(
+              //       index: 1,
+              //       label: "SHOP GAME",
+              //       tabController: _tabController),
+              // ),
               Tab(
                 child: StoreTabLabel(
                     index: 1,
-                    label: "SHOP GAME",
-                    tabController: _tabController),
-              ),
-              Tab(
-                child: StoreTabLabel(
-                    index: 2,
                     label: "SHOP GOOGLE",
                     tabController: _tabController),
               )
@@ -107,7 +106,7 @@ class _StorePageState extends State<StorePage> with TickerProviderStateMixin {
           // SearchProductWidget(),
           [
             ShopStadiaWidget(),
-            ShopGameWidget(),
+            // ShopGameWidget(),
             ShopGoogleWidget(),
           ].elementAt(this._tabController.index)
         ],
