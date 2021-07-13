@@ -1,50 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final FacebookLogin _facebookLogin;
+  final FacebookAuth _facebookAuth;
 
   AuthenticationService(
       {FirebaseAuth firebaseAuth,
       GoogleSignIn googleSignIn,
-      FacebookLogin facebookLogin})
+      FacebookAuth facebookAuth})
       : this._firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         this._googleSignIn = googleSignIn ?? GoogleSignIn(),
-        this._facebookLogin = facebookLogin ?? FacebookLogin();
+        this._facebookAuth = facebookAuth ?? FacebookAuth.instance;
 
   // Sign up services
   Future<void> loginWithFacebook() async {
-    final res = await _facebookLogin.logIn(permissions: [
-      FacebookPermission.publicProfile,
-      FacebookPermission.email
-    ]);
-
-    switch (res.status) {
-      case FacebookLoginStatus.success:
-        print('It worked');
-
-        //Get Token
-        final FacebookAccessToken fbToken = res.accessToken;
-        print(fbToken.token);
-        //Convert to Auth Credential
-        final AuthCredential credential =
-            FacebookAuthProvider.credential(fbToken.token);
-
-        //User Credential to Sign in with Firebase
-        final result = await _firebaseAuth.signInWithCredential(credential);
-
-        print('${result.user.displayName} is now logged in');
-
-        break;
-      case FacebookLoginStatus.cancel:
-        print('The user canceled the login');
-        break;
-      case FacebookLoginStatus.error:
-        print('There was an error');
-        break;
+    try {
+      final result = await FacebookAuth.instance.login();
+      if (result != null) {
+        // Create a credential from the access token
+        final OAuthCredential credential =
+            FacebookAuthProvider.credential(result.token);
+        // Once signed in, return the UserCredential
+        return await FirebaseAuth.instance.signInWithCredential(credential);
+      }
+      return null;
+    } on FacebookAuthException catch (e) {
+      print(e.message);
+      this._facebookAuth.logOut();
     }
   }
 
@@ -76,8 +61,11 @@ class AuthenticationService {
 
   Future<void> signOut() async {
     print("Calling sign Out");
-    return await Future.wait(
-        [this._firebaseAuth.signOut(), this._googleSignIn.signOut()]);
+    return await Future.wait([
+      this._firebaseAuth.signOut(),
+      this._googleSignIn.signOut(),
+      this._facebookAuth.logOut()
+    ]);
   }
 
   Future<bool> isSignedIn() async {

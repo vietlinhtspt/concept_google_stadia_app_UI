@@ -73,24 +73,30 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
               ),
               BlocBuilder<LoginCubit, LoginState>(
                 builder: (context, loginState) {
-                  if (loginState.isSuccess)
-                    BlocProvider.of<AuthenticationCubit>(context).logIn();
-                  return GradientButton(
-                    text: "LOG IN WITH GOOGLE",
-                    gradient: appGradient,
-                    onTap: () {
-                      // print("on tab");
-                      BlocProvider.of<LoginCubit>(context).loginWithGoogle();
-                    },
+                  if (loginState.isSuccess) _onLoginSuccess();
+
+                  return Column(
+                    children: [
+                      GradientButton(
+                        text: "LOG IN WITH GOOGLE",
+                        gradient: appGradient,
+                        onTap: () {
+                          // print("on tab");
+                          BlocProvider.of<LoginCubit>(context)
+                              .loginWithGoogle();
+                        },
+                      ),
+                      GradientButton(
+                        text: "LOG IN WITH FACEBOOK",
+                        gradient: appGradient,
+                        onTap: () {
+                          // print("on tab");
+                          BlocProvider.of<LoginCubit>(context)
+                              .loginWithFacebook();
+                        },
+                      ),
+                    ],
                   );
-                },
-              ),
-              GradientButton(
-                text: "LOG IN WITH FACEBOOK",
-                gradient: appGradient,
-                onTap: () {
-                  // print("on tab");
-                  BlocProvider.of<LoginCubit>(context).loginWithFacebook();
                 },
               ),
               Text(
@@ -106,5 +112,10 @@ class _AuthenticationPagesState extends State<AuthenticationPages> {
         ]),
       ),
     );
+  }
+
+  void _onLoginSuccess() {
+    BlocProvider.of<AuthenticationCubit>(context).logIn();
+    BlocProvider.of<LoginCubit>(context).reset();
   }
 }

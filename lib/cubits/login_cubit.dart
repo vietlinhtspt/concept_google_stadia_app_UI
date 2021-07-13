@@ -70,7 +70,7 @@ class LoginCubit extends Cubit<LoginState> {
       // Handle err
     } catch (err) {
       // other types of Exceptions
-      print(err);
+      print("Error $err");
       LoginState.failure(
           "Some thing wrong with server, try again in minutes or contact service.");
     }
