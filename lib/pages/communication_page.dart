@@ -13,42 +13,31 @@ class CommunicationPage extends StatefulWidget {
 class _CommunicationPageState extends State<CommunicationPage> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(gradient: appGradient),
-        ),
-        Positioned(
-          top: 100,
-          left: -290,
-          child: UnconstrainedBox(
-            child: Container(
-              width: 1000,
-              height: 1000,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+    return Column(children: [
+      CommunicationTabbarWidget(),
+      Expanded(
+          child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(gradient: appGradient),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 100,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              color: Colors.white,
             ),
-          ),
-        ),
-        SafeArea(
-          child: ListView(
-            children: [
-              CommunicationTabbarWidget(),
-              SizedBox(
-                height: 50,
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [ChatItemWidget()],
               ),
-              SizedBox(
-                height: 600,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [ChatItemWidget()],
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
-      ],
-    );
+            ),
+          )
+        ],
+      ))
+    ]);
   }
 }

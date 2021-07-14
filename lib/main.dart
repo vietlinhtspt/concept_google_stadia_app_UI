@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           theme: lightThemeData(context),
           darkTheme: darkThemeData(context),
           // home: MainPage(),
-
+           
           home: BlocBuilder<AuthenticationCubit, AuthenticationState>(
               builder: (context, authenticationState) {
             print("New authentication state");
