@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,22 +17,6 @@ class AuthenticationService {
         this._facebookAuth = facebookAuth ?? FacebookAuth.instance;
 
   // Sign up services
-  Future<void> loginWithFacebook() async {
-    try {
-      final result = await FacebookAuth.instance.login();
-      if (result != null) {
-        // Create a credential from the access token
-        final OAuthCredential credential =
-            FacebookAuthProvider.credential(result.token);
-        // Once signed in, return the UserCredential
-        return await FirebaseAuth.instance.signInWithCredential(credential);
-      }
-      return null;
-    } on FacebookAuthException catch (e) {
-      print(e.message);
-      this._facebookAuth.logOut();
-    }
-  }
 
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
@@ -41,6 +26,29 @@ class AuthenticationService {
   }
 
   // Log in services
+  Future<User> loginWithFacebook() async {
+    // try {
+    //   final result = await FacebookAuth.instance.login();
+    //   if (result != null) {
+    //     // Create a credential from the access token
+    //     final OAuthCredential credential =
+    //         FacebookAuthProvider.credential(result.token);
+    //     // Once signed in, return the UserCredential
+    //     return (await FirebaseAuth.instance.signInWithCredential(credential))
+    //         .user;
+    //   }
+    // } on FacebookAuthException catch (e) {
+    //   print(e.message);
+    //   this._facebookAuth.logOut();
+    // }
+
+    final result = await FacebookAuth.instance.login();
+    final OAuthCredential credential =
+        FacebookAuthProvider.credential(result.token);
+    // Once signed in, return the UserCredential
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+  }
+
   Future<User> signInWithGoogle() async {
     final GoogleSignInAccount googleSignInAccount =
         await _googleSignIn.signIn();
@@ -49,14 +57,13 @@ class AuthenticationService {
     final AuthCredential authCredential = GoogleAuthProvider.credential(
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
-    await _firebaseAuth.signInWithCredential(authCredential);
-    final currentUser = _firebaseAuth.currentUser;
-    return currentUser;
+    return (await _firebaseAuth.signInWithCredential(authCredential)).user;
   }
 
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
-    return await this._firebaseAuth.signInWithEmailAndPassword(
-        email: email.trim(), password: password.trim());
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    return (await this._firebaseAuth.signInWithEmailAndPassword(
+            email: email.trim(), password: password.trim()))
+        .user;
   }
 
   Future<void> signOut() async {
@@ -81,5 +88,22 @@ class AuthenticationService {
   // forgot password services
   Future<void> resetPassword(String email) async {
     return await this._firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+
+  // Firebase API
+  Future<List<DocumentSnapshot>> getUserDocuments() async {
+    User firebaseUser = this._firebaseAuth.currentUser;
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('id', isEqualTo: firebaseUser.uid)
+        .get();
+    return result.docs;
+  }
+
+  Future<void> submitUserDocuments(String userName) async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(this._firebaseAuth.currentUser.uid)
+        .set({'userName': userName, 'id': this._firebaseAuth.currentUser.uid});
   }
 }

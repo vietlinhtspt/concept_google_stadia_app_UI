@@ -6,13 +6,18 @@ import 'package:stadia_app/cubits/authentication_cubit.dart';
 import 'package:stadia_app/cubits/forgot_password_cubit.dart';
 import 'package:stadia_app/cubits/login_cubit.dart';
 import 'package:stadia_app/cubits/sign_up_cubit.dart';
+import 'package:stadia_app/cubits/user_info_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/authentication_pages.dart';
 import 'package:stadia_app/pages/communication_page.dart';
+import 'package:stadia_app/pages/error_page.dart';
 import 'package:stadia_app/pages/home_page.dart';
+import 'package:stadia_app/pages/init_page.dart';
 import 'package:stadia_app/pages/splash.dart';
 import 'package:stadia_app/pages/store_page.dart';
+import 'package:stadia_app/pages/update_info_page.dart';
 import 'package:stadia_app/services/authentication_service.dart';
 import 'package:stadia_app/states/authentication_state.dart';
+import 'package:stadia_app/states/user_info_state.dart';
 import 'package:stadia_app/theme/theme.dart';
 
 void main() async {
@@ -40,19 +45,34 @@ class MyApp extends StatelessWidget {
             create: (context) => LoginCubit(authenticationService)),
         BlocProvider<ForgotPasswordCubit>(
             create: (context) => ForgotPasswordCubit(authenticationService)),
+        BlocProvider<UserInfoCubit>(
+          create: (context) => UserInfoCubit(authenticationService),
+        )
       ],
       child: MaterialApp(
           title: 'Google Stadia App Concept',
           theme: lightThemeData(context),
           darkTheme: darkThemeData(context),
           // home: MainPage(),
-           
+
           home: BlocBuilder<AuthenticationCubit, AuthenticationState>(
               builder: (context, authenticationState) {
             print("New authentication state");
             if (authenticationState is AuthenticationStateSuccess) {
               print("Login sucess");
-              return MainPage();
+              BlocProvider.of<UserInfoCubit>(context).getUserInfo();
+              // return MainPage();
+              return BlocBuilder<UserInfoCubit, UserInfoState>(
+                  builder: (context, userInfoState) {
+                if (userInfoState is UserInfoStateLoading) return SplashPage();
+                if (userInfoState is UserInfoStateSuccess) {
+                  if (userInfoState.userDocumentSnapshot.isEmpty)
+                    return UpdateInfoPage();
+                  return MainPage();
+                }
+                if (userInfoState is UserInfoStateFailure) return ErrorPage();
+                return InitialPage();
+              });
             } else if (authenticationState is AuthenticationStateFailure) {
               print("Login failure");
               return AuthenticationPages();
