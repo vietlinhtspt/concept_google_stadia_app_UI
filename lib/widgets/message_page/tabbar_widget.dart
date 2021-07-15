@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/commons/icon_with_padding.dart';
 import 'package:stadia_app/commons/user_icon.dart';
 import 'package:stadia_app/constants/image_assert.dart';
+import 'package:stadia_app/cubits/user_info_cubit.dart';
+import 'package:stadia_app/states/user_info_state.dart';
 import 'package:stadia_app/theme/colors.dart';
 
 class MessagePageTabbarWidget extends StatelessWidget {
@@ -18,45 +21,53 @@ class MessagePageTabbarWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                UserIcon(
-                    size: 50,
-                    level: null,
-                    color: Colors.green,
-                    imagePath: player1),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            BlocBuilder<UserInfoCubit, UserInfoState>(
+              builder: (context, userInfoState) {
+                return Row(
                   children: [
-                    Text(
-                      "Vietlinhtspt",
-                      style: Theme.of(context).textTheme.headline5.copyWith(
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: 30,
                           color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
-                    Text(
-                      "Online",
-                      style: Theme.of(context).textTheme.headline6.copyWith(
-                            color: Colors.white.withOpacity(0.8),
-                            fontSize: 15,
-                          ),
-                    )
+                    UserIcon(
+                        size: 50,
+                        level: null,
+                        color: Colors.green,
+                        imagePath: player1),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          userInfoState is UserInfoStateSuccess
+                              ? userInfoState.userDocumentSnapshot[0]
+                                      ["userName"]
+                                  .toString()
+                              : "Error",
+                          style: Theme.of(context).textTheme.headline5.copyWith(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "Online",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 15,
+                              ),
+                        )
+                      ],
+                    ),
                   ],
-                ),
-              ],
+                );
+              },
             ),
             Row(
               children: [

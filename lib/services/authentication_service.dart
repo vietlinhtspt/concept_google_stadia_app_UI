@@ -104,6 +104,46 @@ class AuthenticationService {
     FirebaseFirestore.instance
         .collection('users')
         .doc(this._firebaseAuth.currentUser.uid)
-        .set({'userName': userName, 'id': this._firebaseAuth.currentUser.uid});
+        .set({
+      'userName': userName,
+      'id': this._firebaseAuth.currentUser.uid,
+      "messageIDs": [],
+      'friendList': []
+    });
+  }
+
+  Future<List<dynamic>> getMessageIDs() async {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(this._firebaseAuth.currentUser.uid)
+        .get();
+    return snapshot.data()["messageIDs"];
+  }
+
+  Future<void> getListMessages() async {
+    final List<dynamic> messageIDs = await this.getMessageIDs();
+    print("Message IDs length: ${messageIDs.length}");
+  }
+
+  Future<void> requestNewMessage(String userId) async {}
+
+  Future<String> searchUserByUsername(String userName) async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('users').get();
+    print(snapshot.docs.length);
+    for (QueryDocumentSnapshot documentSnapshot in snapshot.docs) {
+      if (documentSnapshot.data()["userName"] == userName.trim())
+        return documentSnapshot.data()["id"];
+    }
+    return null;
+  }
+
+  Future<void> addNewFriend(String userId) async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(this._firebaseAuth.currentUser.uid)
+        .update({
+      "friendList": FieldValue.arrayUnion([userId])
+    });
   }
 }

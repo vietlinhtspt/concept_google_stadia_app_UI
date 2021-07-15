@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/constants/image_assert.dart';
 import 'package:stadia_app/cubits/authentication_cubit.dart';
+import 'package:stadia_app/cubits/communication_cubit.dart';
 import 'package:stadia_app/cubits/forgot_password_cubit.dart';
 import 'package:stadia_app/cubits/login_cubit.dart';
+import 'package:stadia_app/cubits/searching_cubit.dart';
 import 'package:stadia_app/cubits/sign_up_cubit.dart';
 import 'package:stadia_app/cubits/user_info_cubit.dart';
 import 'package:stadia_app/pages/authenication_pages/authentication_pages.dart';
@@ -47,6 +49,12 @@ class MyApp extends StatelessWidget {
             create: (context) => ForgotPasswordCubit(authenticationService)),
         BlocProvider<UserInfoCubit>(
           create: (context) => UserInfoCubit(authenticationService),
+        ),
+        BlocProvider(
+          create: (context) => CommunicationCubit(authenticationService),
+        ),
+        BlocProvider(
+          create: (context) => SearchingCubit(authenticationService),
         )
       ],
       child: MaterialApp(
