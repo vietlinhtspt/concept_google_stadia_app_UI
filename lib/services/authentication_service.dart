@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -125,6 +127,18 @@ class AuthenticationService {
     print("Message IDs length: ${messageIDs.length}");
   }
 
+  // Stream<QuerySnapshot> getAllMessages() async* {
+  //   print("New snapshot in collection message");
+  //   yield (await FirebaseFirestore.instance.collection("messages").get());
+  //   FirebaseFirestore.instance
+  //       .collection("messages")
+  //       .snapshots(includeMetadataChanges: true)
+  //       .listen((snapshot) async* {
+  //     print("New snapshot in collection message");
+  //     yield snapshot;
+  //   });
+  // }
+
   Future<void> requestNewMessage(String userId) async {}
 
   Future<String> searchUserByUsername(String userName) async {
@@ -138,6 +152,8 @@ class AuthenticationService {
     return null;
   }
 
+  String get getUserID => this._firebaseAuth.currentUser.uid;
+
   Future<void> addNewFriend(String userId) async {
     FirebaseFirestore.instance
         .collection('users')
@@ -145,5 +161,38 @@ class AuthenticationService {
         .update({
       "friendList": FieldValue.arrayUnion([userId])
     });
+  }
+
+  void onSendMessage(
+      {@required String content, int type, @required String groupChatID}) {
+    // type: 0 = text, 1 = image, 2 = sticker
+    if (content.trim() != '') {
+      FirebaseFirestore.instance
+          .collection('messages')
+          .doc(groupChatID)
+          .update({
+        "content": content,
+        "userID": this.getUserID,
+        'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+      });
+
+      var documentReference = FirebaseFirestore.instance
+          .collection('messages')
+          .doc(groupChatID)
+          .collection(groupChatID)
+          .doc(DateTime.now().millisecondsSinceEpoch.toString());
+
+      FirebaseFirestore.instance.runTransaction((transaction) async {
+        await transaction.set(
+          documentReference,
+          {
+            'fromUser': this._firebaseAuth.currentUser.uid,
+            'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+            'content': content,
+            'type': type,
+          },
+        );
+      });
+    }
   }
 }

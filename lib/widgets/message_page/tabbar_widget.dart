@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stadia_app/commons/icon_with_padding.dart';
@@ -8,7 +9,9 @@ import 'package:stadia_app/states/user_info_state.dart';
 import 'package:stadia_app/theme/colors.dart';
 
 class MessagePageTabbarWidget extends StatelessWidget {
-  const MessagePageTabbarWidget({
+  final QueryDocumentSnapshot messageSnapshot;
+  const MessagePageTabbarWidget(
+    this.messageSnapshot, {
     Key key,
   }) : super(key: key);
 
@@ -37,19 +40,17 @@ class MessagePageTabbarWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    UserIcon(
-                        size: 50,
-                        level: null,
-                        color: Colors.green,
-                        imagePath: player1),
+                    // UserIcon(
+                    //     size: 50,
+                    //     level: null,
+                    //     color: Colors.green,
+                    //     imagePath: player1),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           userInfoState is UserInfoStateSuccess
-                              ? userInfoState.userDocumentSnapshot[0]
-                                      ["userName"]
-                                  .toString()
+                              ? messageSnapshot["name"].toString()
                               : "Error",
                           style: Theme.of(context).textTheme.headline5.copyWith(
                               color: Colors.white,

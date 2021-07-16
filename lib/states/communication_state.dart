@@ -11,18 +11,16 @@ class CommunicationStateInitial extends CommunicationState {}
 class CommunicationStateLoading extends CommunicationState {}
 
 class CommunicationStateSuccess extends CommunicationState {
-  final List<DocumentSnapshot> userDocumentSnapshot;
-  final bool isValidUserName;
-  CommunicationStateSuccess(this.userDocumentSnapshot, this.isValidUserName);
+  // final QuerySnapshot userDocumentSnapshot;
+  final String uid;
+  CommunicationStateSuccess(this.uid);
 
   @override
-  List<Object> get props => [this.userDocumentSnapshot];
+  List<Object> get props => [this.uid];
 
   CommunicationStateSuccess copyWith(
-      {List<DocumentSnapshot> userDocumentSnapshot, bool isValidUserName}) {
-    return CommunicationStateSuccess(
-        userDocumentSnapshot ?? this.userDocumentSnapshot,
-        isValidUserName ?? this.isValidUserName);
+      {QuerySnapshot userDocumentSnapshot, String uid}) {
+    return CommunicationStateSuccess(uid ?? this.uid);
   }
 }
 
